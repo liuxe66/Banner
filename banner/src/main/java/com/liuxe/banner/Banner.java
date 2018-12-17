@@ -54,18 +54,18 @@ public class Banner extends RelativeLayout {
     private BannerAdapter mBannerAdapter;
     private List<String> mImgList = new ArrayList<>();
     private Context mContext;
-   private Handler mHandler = new Handler(){
-       @Override
-       public void handleMessage(Message msg) {
-           super.handleMessage(msg);
-           switch (msg.what){
-               case 200:
-                   mVpBanner.setCurrentItem(mVpBanner.getCurrentItem() + 1);
-                   mHandler.sendEmptyMessageDelayed(200, playDuration);
-                   break;
-           }
-       }
-   };
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 200:
+                    mVpBanner.setCurrentItem(mVpBanner.getCurrentItem() + 1);
+                    mHandler.sendEmptyMessageDelayed(200, playDuration);
+                    break;
+            }
+        }
+    };
 
     public Banner(Context context) {
         this(context, null);
@@ -80,22 +80,22 @@ public class Banner extends RelativeLayout {
         mContext = context;
         mInflater = LayoutInflater.from(context);
         //获取属性
-        TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.Banner);
-        bannerLeftMargin = ta.getDimensionPixelSize(R.styleable.Banner_bannerLeftMargin,0);
-        bannerRightMargin = ta.getDimensionPixelSize(R.styleable.Banner_bannerRightMargin,0);
-        bannerRadius = ta.getDimensionPixelSize(R.styleable.Banner_bannerRadius,0);
-        bannerMargin = ta.getDimensionPixelSize(R.styleable.Banner_bannerMargin,10);
-        isAutoPlay = ta.getBoolean(R.styleable.Banner_isAutoPlay,false);
-        isShowIndicator = ta.getBoolean(R.styleable.Banner_isShowIndicator,false);
-        isUsePageTransformer = ta.getBoolean(R.styleable.Banner_isUsePageTransformer,false);
-        playDuration = ta.getInteger(R.styleable.Banner_playDuration,6000);
-        scrollDuration = ta.getInteger(R.styleable.Banner_scrollDuration,1200);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Banner);
+        bannerLeftMargin = ta.getDimensionPixelSize(R.styleable.Banner_bannerLeftMargin, 0);
+        bannerRightMargin = ta.getDimensionPixelSize(R.styleable.Banner_bannerRightMargin, 0);
+        bannerRadius = ta.getDimensionPixelSize(R.styleable.Banner_bannerRadius, 0);
+        bannerMargin = ta.getDimensionPixelSize(R.styleable.Banner_bannerMargin, 10);
+        isAutoPlay = ta.getBoolean(R.styleable.Banner_isAutoPlay, false);
+        isShowIndicator = ta.getBoolean(R.styleable.Banner_isShowIndicator, false);
+        isUsePageTransformer = ta.getBoolean(R.styleable.Banner_isUsePageTransformer, false);
+        playDuration = ta.getInteger(R.styleable.Banner_playDuration, 6000);
+        scrollDuration = ta.getInteger(R.styleable.Banner_scrollDuration, 1200);
         //初始设置
         init();
     }
 
-    private void init(){
-        View banner = mInflater.inflate(R.layout.view_banner,null);
+    private void init() {
+        View banner = mInflater.inflate(R.layout.view_banner, null);
         mLlBanner = banner.findViewById(R.id.banner_ll);
         mVpBanner = banner.findViewById(R.id.banner_vp);
     }
@@ -103,14 +103,14 @@ public class Banner extends RelativeLayout {
     /**
      * 当view配置好之后 执行（必须在最后执行的方法）
      */
-    public void start(){
+    public void start() {
         this.removeAllViews();
         //先移除当前布局，在添加
         mLlBanner.removeViewAt(0);
         //viewpager的左右边距
         LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) mVpBanner.getLayoutParams();
-        params1.leftMargin=bannerLeftMargin;
-        params1.rightMargin=bannerRightMargin;
+        params1.leftMargin = bannerLeftMargin;
+        params1.rightMargin = bannerRightMargin;
 
         //设置之后 viewpager可以扩展到所在的父布局上
         mLlBanner.setClipChildren(false);
@@ -121,12 +121,12 @@ public class Banner extends RelativeLayout {
         scroller.initViewPagerScroll(mVpBanner);
 
         //实例化adapter 传入上下文，图片源，圆角角度，点击监听事件
-        mBannerAdapter = new BannerAdapter(mContext,mImgList,bannerRadius,mItemClickListener);
+        mBannerAdapter = new BannerAdapter(mContext, mImgList, bannerRadius, mItemClickListener);
         mVpBanner.setAdapter(mBannerAdapter);
         //添加页面切换动画
-        if (isUsePageTransformer){
+        if (isUsePageTransformer) {
             BannerPageTransformer bannerPageTransformer = new BannerPageTransformer();
-            mVpBanner.setPageTransformer(true,bannerPageTransformer);
+            mVpBanner.setPageTransformer(true, bannerPageTransformer);
         }
         //viewpager的一些设置
         mVpBanner.setPageMargin(bannerMargin);
@@ -135,8 +135,8 @@ public class Banner extends RelativeLayout {
         mVpBanner.setOffscreenPageLimit(mImgList.size());
         //添加到父布局
         mLlBanner.addView(mVpBanner);
-        if (isAutoPlay){
-            mHandler.sendEmptyMessageDelayed(200,playDuration);
+        if (isAutoPlay) {
+            mHandler.sendEmptyMessageDelayed(200, playDuration);
         }
         //将mLlBanner 的onTouch 事件交给mVpBanner 执行
         mLlBanner.setOnTouchListener(new OnTouchListener() {
@@ -150,21 +150,21 @@ public class Banner extends RelativeLayout {
         //将view添加到布局
         this.addView(mLlBanner);
         //是否显示指示器
-        if (isShowIndicator){
+        if (isShowIndicator) {
             mIndicatorView = new IndicatorView(mContext);
             mIndicatorView.setPosSize(mImgList.size());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams
-                    .WRAP_CONTENT,DimensionUtils.dp2px(mContext,12));
+                    .WRAP_CONTENT, DimensionUtils.dp2px(mContext, 12));
 
             //指示器位置
             switch (indicator_position) {
                 case BannerConfig.INDICATOR_LEFT: //左 距左边框16dp
                     params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                    params.leftMargin = DimensionUtils.dp2px(mContext,16);
+                    params.leftMargin = DimensionUtils.dp2px(mContext, 16);
                     break;
                 case BannerConfig.INDICATOR_RIGHT: //右  距右边框16dp
                     params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                    params.rightMargin = DimensionUtils.dp2px(mContext,16);
+                    params.rightMargin = DimensionUtils.dp2px(mContext, 16);
                     break;
                 case BannerConfig.INDICATOR_CENTER: //水平居中
                     params.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -172,7 +172,7 @@ public class Banner extends RelativeLayout {
             }
             //底部 距离底部10dp
             params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            params.bottomMargin = DimensionUtils.dp2px(mContext,10);
+            params.bottomMargin = DimensionUtils.dp2px(mContext, 10);
             //指示器添加到布局
             mIndicatorView.setLayoutParams(params);
             this.addView(mIndicatorView);
@@ -187,19 +187,19 @@ public class Banner extends RelativeLayout {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (isShowIndicator){
+                if (isShowIndicator) {
                     int leftMargin;
-                    leftMargin = (int) (DimensionUtils.dp2px(mContext,3) + (position % getRealCount()
-                            + positionOffset) * DimensionUtils.dp2px(mContext,8));
+                    leftMargin = (int) (DimensionUtils.dp2px(mContext, 3) + (position % getRealCount()
+                            + positionOffset) * DimensionUtils.dp2px(mContext, 8));
                     if (curPageIndex == position) {
                         //向右滑动
                         if (position % getRealCount() == mImgList.size() - 1) {
                             if (positionOffset > 0.9) {
-                                leftMargin = (int) (DimensionUtils.dp2px(mContext,3));
+                                leftMargin = (int) (DimensionUtils.dp2px(mContext, 3));
                             } else {
-                                leftMargin = (int) (DimensionUtils.dp2px(mContext,3) + (position %
+                                leftMargin = (int) (DimensionUtils.dp2px(mContext, 3) + (position %
                                         getRealCount()
-                                ) * DimensionUtils.dp2px(mContext,8));
+                                ) * DimensionUtils.dp2px(mContext, 8));
                             }
                         }
 
@@ -207,11 +207,11 @@ public class Banner extends RelativeLayout {
                         //向左滑动
                         if ((position % getRealCount()) == mImgList.size() - 1) {
                             if (positionOffset < 0.1) {
-                                leftMargin = (int) (DimensionUtils.dp2px(mContext,3) + (position %
+                                leftMargin = (int) (DimensionUtils.dp2px(mContext, 3) + (position %
                                         getRealCount()
-                                ) * DimensionUtils.dp2px(mContext,8));
+                                ) * DimensionUtils.dp2px(mContext, 8));
                             } else {
-                                leftMargin = (int) (DimensionUtils.dp2px(mContext,3));
+                                leftMargin = (int) (DimensionUtils.dp2px(mContext, 3));
                             }
                         }
                     }
@@ -230,32 +230,38 @@ public class Banner extends RelativeLayout {
             @Override
             public void onPageScrollStateChanged(int state) {
                 //判定状态
-                switch (state){
+                switch (state) {
                     case 0: //什么都没做
-                        mHandler.removeMessages(200);
-                        mHandler.sendEmptyMessageDelayed(200, 5000);
+                        if (isAutoPlay) {
+                            mHandler.removeMessages(200);
+                            mHandler.sendEmptyMessageDelayed(200, 5000);
+                        }
                         break;
                     case 1: //开始滑动
                         curPageIndex = mVpBanner.getCurrentItem();
-                        mHandler.removeMessages(200);
+                        if (isAutoPlay) {
+                            mHandler.removeMessages(200);
+                        }
                         break;
                     case 2: //结束滑动
-                        mHandler.removeMessages(200);
+                        if (isAutoPlay) {
+                            mHandler.removeMessages(200);
+                        }
                         break;
                 }
             }
         });
     }
 
-    public void startPlay(){
-        if (isAutoPlay){
-            mHandler.sendEmptyMessageDelayed(200,playDuration);
+    public void startPlay() {
+        if (isAutoPlay) {
+            mHandler.sendEmptyMessageDelayed(200, playDuration);
         }
 
     }
 
-    public void stopPlay(){
-        if (isAutoPlay){
+    public void stopPlay() {
+        if (isAutoPlay) {
             mHandler.removeMessages(200);
         }
 
@@ -282,7 +288,7 @@ public class Banner extends RelativeLayout {
     }
 
     //条目点击回调方法
-    public Banner setOnItemClickListener(ItemClickListener itemClickListener){
+    public Banner setOnItemClickListener(ItemClickListener itemClickListener) {
         mItemClickListener = itemClickListener;
         return this;
     }
@@ -298,27 +304,28 @@ public class Banner extends RelativeLayout {
     }
 
     public Banner setBannerLeftMargin(int bannerLeftMargin) {
-        this.bannerLeftMargin = DimensionUtils.dp2px(mContext,bannerLeftMargin);
+        this.bannerLeftMargin = DimensionUtils.dp2px(mContext, bannerLeftMargin);
         return this;
     }
 
     public Banner setBannerRightMargin(int bannerRightMargin) {
-        this.bannerRightMargin = DimensionUtils.dp2px(mContext,bannerRightMargin);
+        this.bannerRightMargin = DimensionUtils.dp2px(mContext, bannerRightMargin);
         return this;
     }
 
     public Banner setBannerRadius(int bannerRadius) {
-        this.bannerRadius = DimensionUtils.dp2px(mContext,bannerRadius);
+        this.bannerRadius = DimensionUtils.dp2px(mContext, bannerRadius);
         return this;
     }
 
     public Banner setBannerMargin(int bannerMargin) {
-        this.bannerMargin = DimensionUtils.dp2px(mContext,bannerMargin);
+        this.bannerMargin = DimensionUtils.dp2px(mContext, bannerMargin);
         return this;
     }
 
     /**
      * 获取开始位置item
+     *
      * @return
      */
     private int getStartSelectItem() {
@@ -335,6 +342,7 @@ public class Banner extends RelativeLayout {
         }
         return currentItem;
     }
+
     /**
      * 获取真实的Count
      *
