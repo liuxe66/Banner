@@ -11,4 +11,4 @@
 - 点击事件
 
 ### 运行截图
-![运行截图]("https://github.com/liuxe66/Banner/blob/master/aa.gif")
+![运行截图]("https://raw.githubusercontent.com/liuxe66/Banner/master/aa.gif")
