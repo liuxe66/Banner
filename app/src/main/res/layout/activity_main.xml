@@ -16,45 +16,48 @@
             android:orientation="vertical">
             <com.liuxe.banner.Banner
                 android:id="@+id/banner1"
-                android:layout_width="300dp"
-                android:layout_height="140dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
-                app:bannerRadius="6dp"
-                app:bannerLeftMargin="10dp"
-                app:bannerRightMargin="10dp"
-                app:bannerMargin="10dp"
+                app:isAutoPlay="true"
                 />
 
             <com.liuxe.banner.Banner
                 android:id="@+id/banner2"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
                 app:bannerRadius="6dp"
-                app:bannerLeftMargin="10dp"
-                app:bannerRightMargin="10dp"
-                app:bannerMargin="10dp"
+                app:bannerLeftMargin="40dp"
+                app:bannerRightMargin="40dp"
                 app:isShowIndicator="true"
                 app:isAutoPlay="true"
+                app:isUsePageTransformer="true"
                 app:scrollDuration="1200"
                 app:playDuration="6000"
                 />
             <com.liuxe.banner.Banner
                 android:id="@+id/banner3"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
                 app:bannerRadius="6dp"
                 app:bannerLeftMargin="10dp"
-                app:bannerRightMargin="50dp"
-                app:bannerMargin="10dp"/>
+                app:bannerRightMargin="10dp"
+                app:bannerMargin="10dp"
+                app:isAutoPlay="true"
+                app:isShowIndicator="true"/>
             <com.liuxe.banner.Banner
                 android:id="@+id/banner4"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="24dp"
+                app:bannerRightMargin="80dp"
+                app:bannerMargin="10dp"
+                app:bannerRadius="6dp"
+                app:isAutoPlay="true"
+                app:bannerLeftMargin="10dp"
                 />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

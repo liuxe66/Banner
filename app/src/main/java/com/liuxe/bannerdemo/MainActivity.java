@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.liuxe.banner.Banner;
+import com.liuxe.banner.BannerConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +30,14 @@ public class MainActivity extends AppCompatActivity {
         mImgs.add("http://www.yunxiaosheng.com/oss/image/article/picture/e00018e1a70444c09ac7e2f7bfe4787e.jpg");
 
         mBanner1.setImgList(mImgs)
+                .setShowIndicator(true)
+                .setIndicator_position(BannerConfig.INDICATOR_RIGHT)
                 .start();
         mBanner2.setImgList(mImgs)
                 .start();
         mBanner3.setImgList(mImgs)
                 .start();
         mBanner4.setImgList(mImgs)
-                .setAutoPlay(true)
-                .setPlayDuration(6000)
-                .setShowIndicator(true)
-                .setScrollDuration(1200)
                 .start();
     }
 }
