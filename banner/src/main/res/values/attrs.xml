@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Banner">
+        <attr name="bannerLeftMargin" format="dimension"/>
+        <attr name="bannerRightMargin" format="dimension"/>
+        <attr name="bannerRadius" format="dimension"/>
+        <attr name="bannerMargin" format="dimension"/>
+        <attr name="isShowIndicator" format="boolean"/>
+        <attr name="isAutoPlay" format="boolean"/>
+        <attr name="isUsePageTransformer" format="boolean"/>
+        <attr name="playDuration" format="integer"/>
+        <attr name="scrollDuration" format="integer"/>
+    </declare-styleable>
+</resources>
