@@ -12,4 +12,6 @@
 
 ### 运行截图
 ![运行截图]("https://raw.githubusercontent.com/liuxe66/Banner/master/bb.jpg")
-![运行截图]("https://raw.githubusercontent.com/liuxe66/Banner/master/aa.gif")
+![运行截图][img_gif]
+
+[img_gif]: https://raw.githubusercontent.com/liuxe66/Banner/master/aa.gif
