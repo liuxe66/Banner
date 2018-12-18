@@ -11,7 +11,6 @@
 - 点击事件
 
 ### 运行截图
-![运行截图][img_jpg] ![运行截图][img_gif]
+ ![运行截图][img_gif]
 
-[img_jpg]: https://raw.githubusercontent.com/liuxe66/Banner/master/bb.jpg
 [img_gif]: https://raw.githubusercontent.com/liuxe66/Banner/master/aa.gif
